@@ -370,7 +370,6 @@ server.get('/getClients', function (request, response) {
         });
 });
 
-
 http.listen(8080, () => {
     console.log("listening to port 8080");
 });
