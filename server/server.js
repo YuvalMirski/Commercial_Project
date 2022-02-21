@@ -167,7 +167,7 @@ server.get('/getAdmin', function (request, response) {
             }
             const db = client.db(databaseName);
             let adminResult = await db.collection('admin').findOne({username: adminUsername});
-            console.log(JSON.stringify(adminResult));
+            // console.log(JSON.stringify(adminResult));
             response.send(adminResult);
         });
 });
