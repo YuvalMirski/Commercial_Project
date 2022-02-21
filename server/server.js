@@ -10,13 +10,13 @@ const MongoClient = mongodb.MongoClient
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'Ads'
 const __dirname = path.join("" + path.resolve(), '../');
-//const __dirname = path.join("" + path.resolve());//+'/ex1-final';
+//const __dirname = path.join("" + path.resolve());
 console.log("dirname: " + __dirname);
 var server = express();
 var http = require('http').Server(server);
 var io = require('socket.io')(http);
-var adminUsername = "aaa";
-var adminPassword = "123";
+var adminUsername = "aaa"; //default input
+var adminPassword = "123"; //default input
 sendToMongo();
 
 server.get('/:file.js', function (req, res) {

@@ -14,6 +14,8 @@ export function sendToMongo() {
             }
             const db = client.db(databaseName);
 
+            //----------------------------Delete old collections---------------------------------//
+
             db.dropCollection("advertisements", function (err) {
                 if (err)
                     console.log("collection advertisements doesn't exist");
@@ -42,6 +44,7 @@ export function sendToMongo() {
                     console.log("collection admin deleted");
             });
 
+            //----------------------------Create new collections---------------------------------//
 
             db.createCollection("advertisements", function (err, res) {
                 if (err)
@@ -71,7 +74,8 @@ export function sendToMongo() {
                     console.log("clients added")
             });
 
-            //add new data to collections
+            //----------------------------Add new data to collections---------------------------------//
+
             db.collection('admin').insertMany([
                     {
                         "username": "aaa",
@@ -180,6 +184,5 @@ export function sendToMongo() {
                         return console.log('Could not insert')
                     }
                 });
-
         });
 }
