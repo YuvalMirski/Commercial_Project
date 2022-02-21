@@ -344,6 +344,8 @@
         getAdmin(username, password)
     });
 
+//--------------------------------------Admin--------------------------------------------------------//
+
     function getAdmin(username, password) {
         fetch("http://localhost:8080/getAdmin").then(async function (response) {
             if (!response.ok) {
@@ -379,7 +381,7 @@
 
                     setAdmin(userResult, passwordResult);
                 });
-            } else { //login failed
+            } else { //in case login failed
                 let loginResult = document.getElementById('errorLoginMsg');
                 loginResult.style.visibility = 'visible';
                 console.log("wrong username or password. Try Again!");
@@ -397,6 +399,9 @@
             alertMsg(msg);
         });
     }
+
+//--------------------------------------Ads--------------------------------------------------------//
+
 
     function getPics() {
         fetch("http://localhost:8080/getAds").then(async function (response) {
@@ -439,7 +444,7 @@
                     console.log("name:" + adName);
                     console.log("ms:" + adDisplayMs);
                     
-                    if(isNaN(adDisplayMs)) {
+                    if(isNaN(adDisplayMs)) { //check right input (number) validation
                         var msg = "wrong display time entered, try again!";
                         alertMsg(msg);
                     }
@@ -500,12 +505,12 @@
                 console.log("name to be added:" + name);
                 console.log("displayTime to be added:" + displayTime);
 
-                if(isNaN(displayTime)) {
+                if(isNaN(displayTime)) { //check right input (number) validation
                     var msg = "wrong display time entered, try again!";
                     alertMsg(msg);
                 }
                 else{
-                    addNewAd(id, name, displayTime);//call function of fetch
+                    addNewAd(id, name, displayTime); //call function of fetch
                     let addAdBtnRow = document.getElementById('addNewAd');
                     addAdBtnRow.style.visibility = 'visible';
                 }
@@ -579,6 +584,8 @@
             alertMsg(msg);
         });
     }
+
+//--------------------------------------Screen--------------------------------------------------------//
 
     function getScreens() {
         fetch("http://localhost:8080/getScreens").then(async function (response) {
