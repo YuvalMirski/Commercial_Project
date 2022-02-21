@@ -1,0 +1,5 @@
+setUp MongoDB
+run bat File
+open a new window/tab in browser
+enter url http://localhost:8080/screen/1
+change screen id as you want

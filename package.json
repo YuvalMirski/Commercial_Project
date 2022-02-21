@@ -1,0 +1,16 @@
+{
+  "name": "exercises",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "io": "^1.0.4",
+    "mongodb": "^4.3.0",
+    "node-fetch": "^3.1.0",
+    "require": "^2.4.20",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
+    "time-stamp": "^2.2.0"
+  },
+  "type": "module"
+}

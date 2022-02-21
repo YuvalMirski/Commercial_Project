@@ -1,0 +1,36 @@
+import fetch from "node-fetch";
+import express from "express";
+import fs from 'fs';
+import path from 'path';
+import bodyparser from "body-parser";
+
+const __dirname = path.join(path.resolve(), '../')+'/ex1-final';
+
+var server = express();
+server.use('/pictures', express.static(path.join(__dirname, `server/pictures`)));
+
+server.get('/:file.js',function(req,res) {
+    const fileName = req.params.file;
+     res.sendFile(path.join(__dirname, `client/${fileName}.js`));
+});
+
+server.get('/templates/:templateName.html',function(req,res) {
+    const templateName = req.params.templateName;
+    res.sendFile(path.join(__dirname, `client/templates/${templateName}.html`));
+});
+
+server.get('/screen/:id',function(req,res){
+    res.sendFile(path.join(__dirname, 'client/index.html'));
+});
+
+server.get('/ads/:id',function(request,response){
+    var selectedAds = request.params.id % 3;
+    fs.readFile(path.join(__dirname, `/server/screens/screen${selectedAds+1}.json`), 'utf-8',
+        function (err,fileData){response.send(fileData); });
+    //response.json(jsonFile)
+});
+
+server.listen(8080, () => {
+    console.log("listening to port 8080");
+});
+

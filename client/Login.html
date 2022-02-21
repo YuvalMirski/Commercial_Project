@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin login</title>
+    <!--    <link rel="stylesheet" href="./login.css" type="type/css">-->
+    <script src="/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        form {
+            border: 3px solid #f1f1f1;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgContainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 15%;
+            border-radius: 20%;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        .floatLeft {
+            width: 50%;
+            float: left;
+        }
+
+        .floatRight {
+            width: 50%;
+            float: right;
+        }
+
+        body {
+            background-color: #91ced4;
+        }
+
+        body * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            background-color: #327a81;
+            color: white;
+            font-size: 1.5em;
+            padding: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        img {
+            border-radius: 10%;
+
+        }
+
+        .table-design {
+            border: 1px solid #327a81;
+            border-radius: 10px;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+            max-width: calc(100% - 2em);
+            margin: 1em auto;
+            overflow: hidden;
+            width: fit-content;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table td,
+        table th {
+            color: #2b686e;
+            padding: 10px;
+        }
+
+        table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        table td:last-child {
+            font-size: 0.95em;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #daeff1;
+            font-weight: 300;
+        }
+
+        table tr:nth-child(2n) {
+            background-color: white;
+        }
+
+        table tr:nth-child(2n+1) {
+            background-color: #edf7f8;
+        }
+
+        @media screen and (max-width: 700px) {
+            table,
+            tr,
+            td {
+                display: block;
+            }
+
+            td:first-child {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100px;
+            }
+
+            td:not(:first-child) {
+                clear: both;
+                margin-left: 100px;
+                padding: 4px 20px 4px 90px;
+                position: relative;
+                text-align: left;
+            }
+
+            td:not(:first-child):before {
+                color: #91ced4;
+                content: "";
+                display: block;
+                left: 0;
+                position: absolute;
+            }
+
+            tr {
+                padding: 10px 0;
+                position: relative;
+            }
+
+            tr:first-child {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .header {
+                background-color: transparent;
+                color: white;
+                font-size: 2em;
+                font-weight: 700;
+                padding: 0;
+                text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+            }
+
+            img {
+                border: 3px solid;
+                border-color: #daeff1;
+                height: 100px;
+                margin: 0.5rem 0;
+                width: 100px;
+            }
+
+            td:first-child {
+                background-color: #c8e7ea;
+                border-bottom: 1px solid #91ced4;
+                border-radius: 10px 10px 0 0;
+                position: relative;
+                top: 0;
+                transform: translateY(0);
+                width: 100%;
+            }
+
+            td:not(:first-child) {
+                margin: 0;
+                padding: 5px 1em;
+                width: 100%;
+            }
+
+            td:not(:first-child):before {
+                font-size: 0.8em;
+                padding-top: 0.3em;
+                position: relative;
+            }
+
+            td:last-child {
+                padding-bottom: 1rem !important;
+            }
+
+            tr {
+                background-color: white !important;
+                border: 1px solid #6cbec6;
+                border-radius: 10px;
+                box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+                margin: 0.5rem 0;
+                padding: 0;
+            }
+
+            .table-users {
+                border: none;
+                box-shadow: none;
+                overflow: visible;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="login">
+    <form class="Login_form">
+        <div class="imgContainer">
+            <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png" alt="Avatar" class="avatar">
+            <h1 style="font-family: Sans-serif;font-weight:bold">Welcome to admin panel</h1>
+        </div>
+        <div class="container">
+            <label style="font-size: 20px;font-family: Sans-serif"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Enter username" minlength="3" autocomplete="off" required>
+
+            <label style="font-size: 20px;font-family: Sans-serif"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Enter password" minlength="3" autocomplete="off" required>
+            <label id="errorLoginMsg" style="font-size: 16px;font-family: Sans-serif; visibility: hidden;">wrong username or password. Try Again!</label>
+            <button id="loginBtn" class="login_submit" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+
+<div class="main" id="resultDiv" style="visibility: hidden">
+    <br>
+    <div style="text-align: center" class="addBtn">
+        <button style="width: 300px; " id=addNewAd type=button class="addNewAddClass"> Add new advertisement</button>
+    </div>
+    <div class="row">
+        <div class="table-design">
+            <div class="header">Advertisements details</div>
+
+            <div class="col">
+                <table id="tableAds" cellspacing="0">
+                    <tr>
+                        <td width="100"> Ad number</td>
+                        <td width="200"> Image</td>
+                        <td width="200"> Name</td>
+                        <td width="400"> Image source</td>
+                        <td width="150"> Display in milliseconds</td>
+                        <td width="350"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <br>
+        <div class="table-design">
+            <div class="header">Clients </div>
+            <div class="col">
+                <table id="tableClients" cellspacing="0">
+                    <tr>
+                        <td width="200"> Client ID</td>
+                        <td width="200"> Is connected</td>
+                        <td width="200"> Screen</td>
+                        <td width="200"> Url entered</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="floatLeft">
+                <div class="table-design">
+                    <div class="header">Screens details</div>
+                    <table id="tableScreens" cellspacing="0">
+                        <tr>
+                            <td width="200"> Screen number</td>
+                            <td width="200"> Image array</td>
+                            <td width="200"> Status</td>
+                            <td width="200"> Last connections</td>
+                            <td width="350"></td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+            </div>
+          <br>
+            <div class="floatRight">
+                <div class="table-design">
+                    <div class="header">Admin details</div>
+                    <table id="tableAdmin" cellspacing="0">
+                        <tr>
+                            <td width="200"> Username</td>
+                            <td width="200"> Password</td>
+                            <td width="200"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        <br>
+
+ </div>
+</body>
+</html>
+
+<!--<script src="/socket.io/socket.io.js"></script>-->
+
+<script type="text/javascript">
+    // var socket = io();
+    const btn = document.querySelector('.login_submit');
+    let adminData;
+    let adsArr, screensArr;
+
+    btn.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        getAdmin(username, password)
+    });
+
+    function getAdmin(username, password) {
+        fetch("http://localhost:8080/getAdmin").then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            adminData = await response.json();
+            let mongoUser = adminData.username;
+            let mongoPassword = adminData.password;
+
+            if (username == mongoUser && password == mongoPassword) {
+                let divResult = document.getElementById('resultDiv');
+                divResult.style.visibility = 'visible';
+                let loginBtn = document.getElementById('loginBtn');
+                loginBtn.style.visibility = 'hidden';
+                let loginResult = document.getElementById('errorLoginMsg');
+                loginResult.style.visibility = 'hidden';
+                getPics();
+                getScreens();
+                getClients();
+
+                //Create admin table
+                $("<tr><td id=talbeUsername style=width: 100px><input type=text name=username value=" + mongoUser + " required></td>" +
+                    "<td id=talbeuserPassword style=width: 100px><input type=text id=password value=" + mongoPassword + " required></td>" +
+                    "<td><button id=userEdit type=button class='btnInfo'> Edit </button></td></tr>").appendTo("#tableAdmin");
+
+                const editUserbtn = document.getElementById('userEdit');
+                editUserbtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    console.log("edit user clicked");
+                    var tableRes = document.getElementById('tableAdmin'); 
+                    var userResult = tableRes.rows[1].cells[0].firstChild.value;
+                    var passwordResult = tableRes.rows[1].cells[1].firstChild.value;
+
+                    setAdmin(userResult, passwordResult);
+                });
+            } else { //login failed
+                let loginResult = document.getElementById('errorLoginMsg');
+                loginResult.style.visibility = 'visible';
+                console.log("wrong username or password. Try Again!");
+            }
+        });
+    }
+
+
+    function setAdmin(userResult, passwordResult) {
+        fetch('http://localhost:8080/setAdmin/username=' + userResult + '/password=' + passwordResult).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            var msg = "Admin details updated!";
+            alertMsg(msg);
+        });
+    }
+
+    function getPics() {
+        fetch("http://localhost:8080/getAds").then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            adsArr = await response.json();
+            var i = 0;
+            //create ads table
+            $.each(adsArr, function (key, value) { 
+                var src = value.templateParams.image;
+                var displayMs = value.displayMs;
+
+                $("<tr><td>" + value.id + " </td>" +
+                    "<td><img src=" + src + " style=height:100px></td>" +
+                    "<td><input type=text id=imageName" + i + " value=" + value.templateParams.name + " required></td>" +
+                    "<td style='width: 100px;word-break: break-word;'>" + src + "</td>" +
+                    "<td><input type=text id=imageDisplayMs" + i + " value=" + displayMs + " required></td>" +
+                    "<td><button style='width:150px;margin-right: 20px;' id=editPic" + i + " class='editPicClass' type=button> Edit </button>" +
+                    "<button style='width: 150px;background: red' id=deletePic" + i + " class='deletePicClass' type=button class=btn_removeAd> Delete </button></td></tr>").appendTo("#tableAds")
+                i++;
+            });
+
+            let editBtn = document.querySelectorAll('.editPicClass');
+            editBtn.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    var currentAdIndex = e.target.parentElement.parentElement.textContent.split(" ")[0];
+                    console.log("edit ad index: " + currentAdIndex);
+
+                    var tableRes = document.getElementById('tableAds');
+                    var adName, adDisplayMs;
+                    for (var i = 1; i < tableRes.rows.length; i++) {
+                        if (tableRes.rows[i].cells[0].innerText == currentAdIndex) {
+                            adName = tableRes.rows[i].cells[2].firstChild.value;
+                            adDisplayMs = tableRes.rows[i].cells[4].firstChild.value;
+                            break;
+                        }
+                    }
+                    console.log("name:" + adName);
+                    console.log("ms:" + adDisplayMs);
+                    
+                    if(isNaN(adDisplayMs)) {
+                        var msg = "wrong display time entered, try again!";
+                        alertMsg(msg);
+                    }
+                    else {
+                        updateAd(currentAdIndex, adName, adDisplayMs);
+                    }
+                });
+            });
+
+            let deleteBtn = document.querySelectorAll('.deletePicClass');
+            deleteBtn.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentAdIndex = e.target.parentElement.parentElement.textContent.split(" ")[0];
+                    console.log("delete ad index: " + currentAdIndex);
+
+                    deleteAd(currentAdIndex);
+                });
+            });
+
+            $(".addBtn").unbind('click').click(function () { //unbind prevents double clicked
+                console.log("Add new ad clicked");
+                let addAdBtnRow = document.getElementById('addNewAd');
+                addAdBtnRow.style.visibility = 'hidden';
+                var tableRes = document.getElementById('tableAds');
+                $('#tableAds').append(
+                    "<tr><td>" + tableRes.rows.length + " </td>" +
+                    "<td></td>" +
+                    "<td><input type=text id=imageName" + i + " placeholder='img name' required></td>" +
+                    "<td></td>" +
+                    "<td><input type=text id=imageDisplayMs" + i + " placeholder='diplay in ms' required></td>" +
+                    "<td><button style='width:320px;background: #2b686e' id=addPic" + i + " class='addPicClass' type=button class=btn_addAd> Add </button></td></tr>"
+                );
+                addingNewAdListener();
+            });
+        });
+    }
+
+    function addingNewAdListener() {
+        let addAdToMongo = document.querySelectorAll('.addPicClass');
+        addAdToMongo.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentAdIndex = e.target.parentElement.parentElement.textContent.split(" ")[0];
+                console.log("add to mongo ad index: " + currentAdIndex);
+
+                var tableRes = document.getElementById('tableAds');
+                var id, name, displayTime;
+                for (var i = 1; i < tableRes.rows.length; i++) {
+                    if (tableRes.rows[i].cells[0].innerText == currentAdIndex) {
+                        id = currentAdIndex;
+                        name = tableRes.rows[i].cells[2].firstChild.value;
+                        displayTime = tableRes.rows[i].cells[4].firstChild.value;
+                        break;
+                    }
+                }
+                console.log("id to be added:" + id);
+                console.log("name to be added:" + name);
+                console.log("displayTime to be added:" + displayTime);
+
+                if(isNaN(displayTime)) {
+                    var msg = "wrong display time entered, try again!";
+                    alertMsg(msg);
+                }
+                else{
+                    addNewAd(id, name, displayTime);//call function of fetch
+                    let addAdBtnRow = document.getElementById('addNewAd');
+                    addAdBtnRow.style.visibility = 'visible';
+                }
+            });
+        });
+    }
+
+    function getClients() {
+        fetch("http://localhost:8080/getClients").then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            clientArr = await response.json();
+            var i = 0;
+            $.each(clientArr, function (key, value) {
+                //Create  table
+                $("<tr><td id=clientid style=width: 100px> "+ value.socketId+ "</td>"+
+                    "<td id=connected style=width: 100px> "+ value.connected + "</td>" +
+                    "<td id=screen style=width: 100px>"+ value.screenNumber +"</td>"+
+                    "<td id=urlenterd style=width: 100px>"+ value.clientId +"</td></tr>").appendTo("#tableClients");
+                i++;
+            });
+        });
+    }
+
+    function addNewAd(adId, adName, adDisplay) {
+        fetch('http://localhost:8080/addNewAd/id=' + adId + '/name=' + adName +
+            '/imgDisplay=' + adDisplay).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            //updated ads table
+            $('#tableAds').empty();
+            $("<tr><td width=100> Ad number </td><td width=200> Image</td><td width=200> Name</td>" +
+                "<td width=400> Image source</td>" +
+                "<td width=150> Display in milliseconds</td>" +
+                "<td width=400></td></tr>").appendTo("#tableAds");
+            getPics();
+            var msg = "Ad "+adId+" added!";
+            alertMsg(msg);
+        });
+    }
+
+    function updateAd(adIndex, adName, adDisplayMs) {
+        fetch('http://localhost:8080/setAds/index=' + adIndex + '/name=' + adName + '/display=' + adDisplayMs).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            var msg = "Ad "+adIndex+" updated!";
+            alertMsg(msg);
+        });
+    }
+
+    function deleteAd(adIndex) {
+        fetch('http://localhost:8080/deleteAd/index=' + adIndex).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            $('#tableAds').empty();
+            $("<tr><td width=100> Ad number </td><td width=200> Image</td><td width=200> Name</td>" +
+                "<td width=400> Image source</td>" +
+                "<td width=150> Display in milliseconds</td>" +
+                "<td width=400></td></tr>").appendTo("#tableAds");
+            getPics();
+
+            $('#tableScreens').empty();
+            $("<tr><td> Screen number </td><td> Image array </td><td> status </td><td> Last connections </td><td></td></tr>").appendTo("#tableScreens");
+            getScreens();
+
+            var msg = "Ad "+adIndex+" removed!";
+            alertMsg(msg);
+        });
+    }
+
+    function getScreens() {
+        fetch("http://localhost:8080/getScreens").then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            screensArr = await response.json(); 
+            var i = 0;
+            $.each(screensArr, function (key, value) {
+                $("<tr><td>" + value.id + " </td>" +
+                    "<td><input type=text id=AdsShow" + i + " value=" + value.adsShow + " required></td>" +
+                    "<td>" + value.status + "</td>" +
+                    "<td>" + value.lastConnection + "</td>" +
+                    "<td><button style='width:150px;margin-right: 20px;' id=editScreen" + i + " type=button class='editScreenClass'> Edit </button>" +
+                    "<button style='width:150px;background: red' id=editScreen" + i + " type=button class='deleteScreenClass'> Delete </button></td></tr>").appendTo("#tableScreens")
+                i++;
+            });
+
+            let editBtn = document.querySelectorAll('.editScreenClass');
+            editBtn.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentScreenIndex = e.target.parentElement.parentElement.textContent.split(" ")[0];
+                    console.log("edit screen index: " + currentScreenIndex);
+
+                    var tableRes = document.getElementById('tableScreens');
+                    var ImgArray;
+                    for (var i = 1; i < tableRes.rows.length; i++) {
+                        if (tableRes.rows[i].cells[0].innerText == currentScreenIndex) {
+                            ImgArray = tableRes.rows[i].cells[1].firstChild.value;
+                            break;
+                        }
+                    }
+                    console.log("array:" + ImgArray);
+                    updateScreen(currentScreenIndex, ImgArray);
+                });
+            });
+
+            let deleteBtn = document.querySelectorAll('.deleteScreenClass');
+            deleteBtn.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentScreenIndex = e.target.parentElement.parentElement.textContent.split(" ")[0];
+                    console.log("delete screen at index: " + currentScreenIndex);
+
+                    deleteScreen(currentScreenIndex);
+                });
+            });
+        });
+    }
+
+    function updateScreen(screenIndex, ImgArray) { 
+        fetch('http://localhost:8080/setScreens/index=' + screenIndex + '/arr=' + ImgArray).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            var msg = "Screen "+screenIndex+" updated!";
+            alertMsg(msg);
+        });
+    }
+
+    function deleteScreen(screenIndex) {
+        fetch('http://localhost:8080/deleteScreen/index=' + screenIndex).then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+
+            $('#tableScreens').empty();
+            $("<tr><td> Screen number </td><td> Image array </td><td> status </td><td> Last connections </td><td></td></tr>").appendTo("#tableScreens");
+            getScreens();
+
+            var msg = "Screen "+screenIndex+" removed!";
+            alertMsg(msg);
+        });
+    }
+
+    function alertMsg(msg)
+    {
+        alert(msg);
+    }
+
+</script>
