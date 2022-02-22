@@ -281,14 +281,14 @@
 
         <br>
         <div class="table-design">
-            <div class="header">Clients </div>
+            <div class="header">Clients details</div>
             <div class="col">
                 <table id="tableClients" cellspacing="0">
                     <tr>
                         <td width="200"> Client ID</td>
                         <td width="200"> Is connected</td>
-                        <td width="200"> Screen</td>
-                        <td width="200"> Url entered</td>
+                        <td width="200"> Screen number</td>
+                        <td width="200" style="text-align: center;"> URL entered</td>
                     </tr>
                 </table>
             </div>
@@ -527,10 +527,10 @@
             var i = 0;
             $.each(clientArr, function (key, value) {
                 //Create  table
-                $("<tr><td id=clientid style=width: 100px> "+ value.socketId+ "</td>"+
-                    "<td id=connected style=width: 100px> "+ value.connected + "</td>" +
-                    "<td id=screen style=width: 100px>"+ value.screenNumber +"</td>"+
-                    "<td id=urlenterd style=width: 100px>"+ value.clientId +"</td></tr>").appendTo("#tableClients");
+                $("<tr><td id=clientid> "+ value.socketId+ "</td>"+
+                    "<td id=connected> "+ value.connected + "</td>" +
+                    "<td id=screen>"+ value.screenNumber +"</td>"+
+                    "<td id=urlenterd style='text-align:center'>"+ value.clientId +"</td></tr>").appendTo("#tableClients");
                 i++;
             });
         });
