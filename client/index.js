@@ -54,7 +54,6 @@ socket.on('connect', () => {
     socket.emit('user_display_screen', id);
 })
 
-
 function main() {
 
     jQuery(document).ready(() => {

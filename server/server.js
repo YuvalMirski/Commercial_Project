@@ -221,8 +221,8 @@ server.get('/setAdmin/username=:usr/password=:pwd', function (request, response)
             );
             adminUsername = new_username;
             adminPassword = new_password;
-            console.log("Admin details updated!");
 
+            console.log("Admin details updated!");
             response.send(); //ack
         });
 });

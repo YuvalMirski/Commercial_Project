@@ -173,7 +173,7 @@ export function sendToMongo() {
                     },
                     {
                         "id": "3",
-                        "adsShow": ["1", "3", "5"],
+                        "adsShow": ["2", "3", "5"],
                         "status": "notConnected",
                         "lastConnection": "",
                         "numberOfConnection": 0

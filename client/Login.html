@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
-    <!--    <link rel="stylesheet" href="./login.css" type="type/css">-->
+    <!-- <link rel="stylesheet" href="./login.css" type="type/css"> -->
     <script src="/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -293,6 +293,7 @@
                 </table>
             </div>
         </div>
+
         <br>
         <div class="container">
             <div class="floatLeft">
@@ -338,7 +339,6 @@
 
     btn.addEventListener('click', function (event) {
         event.preventDefault();
-
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
         getAdmin(username, password)
@@ -389,7 +389,6 @@
         });
     }
 
-
     function setAdmin(userResult, passwordResult) {
         fetch('http://localhost:8080/setAdmin/username=' + userResult + '/password=' + passwordResult).then(async function (response) {
             if (!response.ok) {
@@ -401,7 +400,6 @@
     }
 
 //--------------------------------------Ads--------------------------------------------------------//
-
 
     function getPics() {
         fetch("http://localhost:8080/getAds").then(async function (response) {
@@ -518,24 +516,6 @@
         });
     }
 
-    function getClients() {
-        fetch("http://localhost:8080/getClients").then(async function (response) {
-            if (!response.ok) {
-                throw new Error("Http error, status = " + response.status);
-            }
-            clientArr = await response.json();
-            var i = 0;
-            $.each(clientArr, function (key, value) {
-                //Create  table
-                $("<tr><td id=clientid> "+ value.socketId+ "</td>"+
-                    "<td id=connected> "+ value.connected + "</td>" +
-                    "<td id=screen>"+ value.screenNumber +"</td>"+
-                    "<td id=urlenterd style='text-align:center'>"+ value.clientId +"</td></tr>").appendTo("#tableClients");
-                i++;
-            });
-        });
-    }
-
     function addNewAd(adId, adName, adDisplay) {
         fetch('http://localhost:8080/addNewAd/id=' + adId + '/name=' + adName +
             '/imgDisplay=' + adDisplay).then(async function (response) {
@@ -576,12 +556,32 @@
                 "<td width=400></td></tr>").appendTo("#tableAds");
             getPics();
 
-            $('#tableScreens').empty();
+            $('#tableScreens').empty(); //removing the ad from the screens
             $("<tr><td> Screen number </td><td> Image array </td><td> status </td><td> Last connections </td><td></td></tr>").appendTo("#tableScreens");
             getScreens();
 
             var msg = "Ad "+adIndex+" removed!";
             alertMsg(msg);
+        });
+    }
+
+//--------------------------------------Clients--------------------------------------------------------//
+
+function getClients() {
+        fetch("http://localhost:8080/getClients").then(async function (response) {
+            if (!response.ok) {
+                throw new Error("Http error, status = " + response.status);
+            }
+            clientArr = await response.json();
+            var i = 0;
+            $.each(clientArr, function (key, value) {
+                //Create  table
+                $("<tr><td id=clientid> "+ value.socketId+ "</td>"+
+                    "<td id=connected> "+ value.connected + "</td>" +
+                    "<td id=screen>"+ value.screenNumber +"</td>"+
+                    "<td id=urlenterd style='text-align:center'>"+ value.clientId +"</td></tr>").appendTo("#tableClients");
+                i++;
+            });
         });
     }
 
