@@ -41,7 +41,6 @@ const templates = {
                     imgElement.width = 500;
                     // imgElement.height = imageAdders;
                 }
-
             }
         }
     }
@@ -84,7 +83,6 @@ function main() {
                     }
                 );
             }
-
             loadAdByTimer(0);
         });
     });

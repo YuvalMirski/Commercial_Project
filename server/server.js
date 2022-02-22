@@ -302,8 +302,8 @@ server.get('/setScreens/index=:screenIndex/arr=:imgArray', function (request, re
                     }
                 );
                 console.log("Screen details updated!");
+                response.send(); //ack
             }
-            response.send(); //ack
         });
 });
 
